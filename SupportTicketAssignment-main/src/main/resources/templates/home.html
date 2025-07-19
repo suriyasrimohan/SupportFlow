@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Home - Support Ticket System</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/style3.css">
+</head>
+<body>
+    <div class="nav">
+        <div class="container">
+            <a th:href="@{/home}">Home</a>
+            <a th:href="@{/login}">Login</a>
+            <a th:href="@{/register}">Register</a>
+        </div>
+    </div>
+    <div class="container">
+        <div class="hero">
+            <h1>Streamline Your Support with Ease</h1>
+            <p class="tagline">A powerful platform to manage, track, and resolve support tickets effortlessly.</p>
+            <div class="button-container">
+                <a th:href="@{/login}" class="btn btn-login">Login</a>
+                <a th:href="@{/register}" class="btn btn-register">Get Started</a>
+            </div>
+            <div th:if="${error}" class="error" th:text="${error}"></div>
+        </div>
+        <div class="features">
+            <h2>Why Choose Our Support Ticket System?</h2>
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <h3>Easy Ticket Submission</h3>
+                    <p>Customers can submit tickets quickly with our intuitive interface.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>Real-Time Tracking</h3>
+                    <p>Monitor ticket status and updates in real time for full transparency.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>Efficient Agent Management</h3>
+                    <p>Assign tickets to agents based on expertise and availability.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer class="footer">
+        <div class="container">
+            <p>© 2025 Support Ticket System. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>

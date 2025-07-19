@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <title>Edit Agent - Support Ticket System</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/style2.css">
+</head>
+<body>
+    <div class="container">
+        <div class="nav">
+            <a th:href="@{/admin/dashboard}">Dashboard</a>
+            <a th:href="@{/admin/agents}">Manage Agents</a>
+            <a th:href="@{/home}">Logout</a>
+        </div>
+        <div class="card">
+            <div sec:authorize="hasAuthority('ROLE_ADMIN')">
+                <h2>Edit Agent: <span th:text="${agent.username}"></span></h2>
+                <form th:action="@{'/admin/agent/' + ${agent.id} + '/update'}" method="post" class="form-container">
+                    <label for="expertise">Expertise (comma-separated, e.g., login,payment):</label>
+                    <input type="text" id="expertise" name="expertise" th:value="${agent.expertise}" required>
+                    <label for="available">Available:</label>
+                    <select id="available" name="available">
+                        <option value="true" th:selected="${agent.available}">Yes</option>
+                        <option value="false" th:selected="${!agent.available}">No</option>
+                    </select>
+                    <input type="submit" value="Update">
+                </form>
+            </div>
+            <div sec:authorize="!hasAuthority('ROLE_ADMIN')">
+                <p class="error">Access Denied: You do not have permission to view this page.</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

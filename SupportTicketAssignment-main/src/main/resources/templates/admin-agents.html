@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <title>Manage Agents - Support Ticket System</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/style2.css">
+</head>
+<body>
+    <div class="container">
+        <div class="nav">
+            <a th:href="@{/admin/dashboard}">Dashboard</a>
+            <a th:href="@{/admin/agents}">Manage Agents</a>
+            <a th:href="@{/home}">Logout</a>
+        </div>
+        <div class="card">
+            <div sec:authorize="hasAuthority('ROLE_ADMIN')">
+                <h2>Manage Agents</h2>
+                <div th:if="${agents.isEmpty()}">
+                    <p class="error">No agents available.</p>
+                </div>
+                <div th:unless="${agents.isEmpty()}">
+                    <table>
+                        <tr>
+                            <th>ID</th>
+                            <th>Username</th>
+                            <th>Expertise</th>
+                            <th>Available</th>
+                            <th>Action</th>
+                        </tr>
+                        <tr th:each="agent : ${agents}">
+                            <td th:text="${agent.id}"></td>
+                            <td th:text="${agent.username}"></td>
+                            <td th:text="${agent.expertise ?: 'None'}"></td>
+                            <td th:text="${agent.available}"></td>
+                            <td>
+                                <a th:href="@{'/admin/agent/' + ${agent.id} + '/edit'}" class="link">Edit</a>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            <div sec:authorize="!hasAuthority('ROLE_ADMIN')">
+                <p class="error">Access Denied: You do not have permission to view this page.</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

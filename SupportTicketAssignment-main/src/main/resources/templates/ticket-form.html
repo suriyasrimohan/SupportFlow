@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Submit Ticket</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+<div class="container">
+<h2>Submit Support Ticket</h2>
+<form th:action="@{/customer/ticket}" method="post" class="form">
+    <div class="form-group">
+    <label for="title" class="form-label">Title:</label><br>
+    <input type="text" name="title" class="form-input" required><br>
+    </div>
+ 
+     <div class="form-group">     
+    <label for="description" class="form-label">Description:</label><br>
+    <textarea name="description" class="form-input" required></textarea><br>
+    </div>
+    <div class="form-group">
+    <label for="category" class="form-label">Category:</label><br>
+    <input type="text" name="category" class="form-input" required><br>
+    </div>
+	<div class="form-group">
+    <label for="priority" class="form-label">Priority:</label><br>
+    <select name="priority" class="form-input">
+        <option value="LOW">LOW</option>
+        <option value="MEDIUM">MEDIUM</option>
+        <option value="HIGH">HIGH</option>
+    </select><br><br>
+	</div>
+    
+    <div class="form-group">
+    	<input type="submit" class="form-button" value="Submit Ticket">
+    </div>
+</form>
+<br>
+<p class="form-link"><a th:href="@{/customer/tickets}">show all tickets</a></p>
+
+</div>
+</body>
+</html>
